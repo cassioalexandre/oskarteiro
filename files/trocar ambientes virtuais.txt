@@ -1,0 +1,311 @@
+Tarefa 1: Verificar a Instalação do Git e Configurar o Usuário
+(⚡ Necessário apenas na instalação)
+
+📌 Conceito
+O Git é um sistema de controle de versão distribuído que permite rastrear mudanças no código, colaborar com outras pessoas e reverter para versões anteriores se necessário. Antes de começar a usar o Git, é importante garantir que ele está instalado e configurado corretamente.
+
+🖥️ Passo 1.1 - Verificar a instalação do Git
+Abra o terminal no macOS e execute o seguinte comando para verificar se o Git já está instalado:
+
+sh
+Copiar
+Editar
+git --version
+Se o Git estiver instalado, ele retornará uma versão, por exemplo:
+git version 2.30.1 (ou similar).
+
+Se o Git não estiver instalado, instale-o com:
+
+sh
+Copiar
+Editar
+brew install git
+(Se você não tiver o Homebrew instalado, me avise antes de continuar.)
+
+🖥️ Passo 1.2 - Configurar nome e e-mail do Git
+Se o Git já estiver instalado, configure seu nome e e-mail para que os commits sejam corretamente identificados:
+
+sh
+Copiar
+Editar
+git config --global user.name "Seu Nome"
+git config --global user.email "seu@email.com"
+Para verificar se as configurações foram salvas corretamente:
+
+sh
+Copiar
+Editar
+git config --global --list
+Isso deve retornar algo como:
+
+ini
+Copiar
+Editar
+user.name=Cassio Machado
+user.email=cassio@email.com
+
+
+
+
+Tarefa 2: Criar um Repositório Git para Gerenciar os Ambientes
+(⚡ Necessário apenas na primeira vez que configurar um repositório)
+
+📌 Conceito
+Um repositório Git é um diretório onde o Git rastreia mudanças nos arquivos. Como você já tem seus ambientes (dev, qas, prd) organizados, vamos transformar essa pasta em um repositório Git.
+
+Isso permitirá que você acompanhe alterações, crie versões do código e alterne entre ambientes de forma mais controlada.
+
+🖥️ Passo 2.1 - Navegar até a pasta dos ambientes
+Abra o terminal e vá até a pasta onde seus ambientes virtuais estão organizados:
+
+sh
+Copiar
+Editar
+cd "/Usuários/Cassio Machado/Development"
+Verifique se os diretórios dos ambientes estão lá:
+
+sh
+Copiar
+Editar
+ls -l
+Isso deve listar algo como:
+
+Copiar
+Editar
+drwxr-xr-x 5 cassio staff 160 Feb 9 10:00 env-dev
+drwxr-xr-x 5 cassio staff 160 Feb 9 10:00 env-qas
+drwxr-xr-x 5 cassio staff 160 Feb 9 10:00 env-prd
+Se tudo estiver correto, siga para o próximo passo.
+
+🖥️ Passo 2.2 - Inicializar o repositório Git
+Agora, vamos transformar essa pasta em um repositório Git:
+
+sh
+Copiar
+Editar
+git init
+Isso cria um diretório oculto .git dentro da pasta, que armazenará o histórico de versões.
+
+Para verificar se deu certo, execute:
+
+sh
+Copiar
+Editar
+ls -la
+Se o .git aparecer na lista, significa que o repositório foi inicializado com sucesso.
+
+
+
+🖥️ Passo 2.3 - Criar um arquivo .gitignore
+Para evitar que o Git rastreie arquivos desnecessários (como pacotes dos ambientes virtuais), crie um arquivo .gitignore:
+
+sh
+Copiar
+Editar
+touch .gitignore
+Abra o arquivo no editor:
+
+sh
+Copiar
+Editar
+nano .gitignore
+E adicione as seguintes linhas para ignorar os diretórios dos ambientes virtuais:
+
+markdown
+Copiar
+Editar
+env-dev/
+env-qas/
+env-prd/
+__pycache__/
+Salve o arquivo (CTRL + X, depois Y e Enter).
+
+Verifique se foi salvo corretamente:
+
+sh
+Copiar
+Editar
+cat .gitignore
+🖥️ Passo 2.4 - Fazer o primeiro commit
+Agora, vamos adicionar os arquivos e criar um primeiro commit para marcar o início do versionamento:
+
+sh
+Copiar
+Editar
+git add .
+git commit -m "Inicialização do repositório Git"
+Para verificar o status do repositório:
+
+sh
+Copiar
+Editar
+git status
+Isso deve mostrar que o repositório está atualizado.
+
+🎯 Tarefa concluída?
+Se tudo correu bem até aqui, me responda com "completamente" e seguimos para a próxima etapa. 🚀
+
+
+
+
+
+
+Você disse:
+o nome certo da pasta. do ambiente é /Users/cassiomachado/devlopment guarde esta informação para depois
+O ChatGPT disse:
+Memória atualizada
+Entendido! Vamos corrigir a navegação e continuar.
+
+🖥️ Passo 2.1 - Navegar até a pasta correta
+Use o seguinte comando para acessar sua pasta de desenvolvimento:
+
+sh
+Copiar
+Editar
+cd "/Users/cassiomachado/devlopment"
+Agora siga os outros passos normalmente.
+
+Se tudo correu bem, me responda com "completamente" e seguimos para a próxima etapa. 🚀
+
+
+
+
+
+
+Você disse:
+
+O ChatGPT disse:
+Pelo terminal, parece que você concluiu com sucesso a inicialização do repositório Git e o primeiro commit. O .gitignore também foi criado corretamente e está ignorando os diretórios env-dev, env-qas, env-prd, além de outros arquivos desnecessários.
+
+Se estiver tudo certo até aqui, me responda com "completamente" para seguirmos para a próxima etapa! 🚀
+
+
+
+
+
+
+Você disse:
+completamente
+O ChatGPT disse:
+Tarefa 3: Criar e Alternar entre Branches para Cada Ambiente
+(⚡ Repetida sempre que precisar criar um novo ambiente ou branch)
+
+📌 Conceito
+Branches (ou "ramificações") permitem trabalhar em diferentes versões do código sem afetar a versão principal. No seu caso, cada branch representará um ambiente:
+
+dev → Desenvolvimento
+qas → Qualidade
+prd → Produção
+Isso permite que você desenvolva mudanças no dev, teste no qas e só depois envie para prd.
+
+
+
+🖥️ Passo 3.1 - Criar branches para cada ambiente
+Agora vamos criar branches separadas para cada ambiente:
+
+sh
+Copiar
+Editar
+git branch dev
+git branch qas
+git branch prd
+Para verificar se os branches foram criados:
+
+sh
+Copiar
+Editar
+git branch
+Isso deve mostrar:
+
+markdown
+Copiar
+Editar
+* master
+  dev
+  qas
+  prd
+O asterisco * indica a branch atual.
+
+🖥️ Passo 3.2 - Alternar entre branches
+Para alternar entre os ambientes, use:
+
+sh
+Copiar
+Editar
+git checkout dev   # Alterna para o ambiente de desenvolvimento
+git checkout qas   # Alterna para qualidade
+git checkout prd   # Alterna para produção
+Você pode confirmar a branch atual executando:
+
+sh
+Copiar
+Editar
+git branch
+🖥️ Passo 3.3 - Configurar a Branch Principal
+Por padrão, o Git usa master ou main como a branch principal. Vamos definir prd como a branch principal do repositório, já que é o ambiente de produção:
+
+sh
+Copiar
+Editar
+git branch -M prd
+Isso significa que qualquer nova branch será criada a partir de prd, garantindo que o ambiente de produção seja sempre a referência.
+
+🎯 Tarefa concluída?
+Se os branches foram criados corretamente e você conseguiu alternar entre eles, me responda com "completamente" para seguirmos para a próxima etapa! 🚀
+
+
+
+
+
+
+Você disse:
+preciso entender on de eu criarei os arquivos? eu os criarei em dev? ou isto esta para ser explicado mais tarde?
+O ChatGPT disse:
+Ótima pergunta! Vamos esclarecer antes de avançar.
+
+📌 Onde Criar e Editar os Arquivos?
+Todo novo código deve ser criado e modificado na branch dev.
+Depois que o código for testado e validado, ele será movido para qas.
+Somente depois da aprovação, ele será enviado para prd.
+Ou seja, você sempre trabalhará no dev, e só migrará as mudanças para qas e prd conforme necessário.
+
+🖥️ Como Criar e Gerenciar Arquivos no Git?
+Criar um arquivo no dev:
+
+Primeiro, alterne para a branch dev:
+sh
+Copiar
+Editar
+git checkout dev
+Crie um arquivo de exemplo:
+sh
+Copiar
+Editar
+touch meu_arquivo.py
+Adicione um conteúdo ao arquivo:
+sh
+Copiar
+Editar
+echo "# Este é um arquivo de teste" > meu_arquivo.py
+Verifique se o arquivo foi criado:
+sh
+Copiar
+Editar
+ls -l
+Salvar as alterações no Git (Commitar):
+
+Adicionar o arquivo ao Git:
+sh
+Copiar
+Editar
+git add meu_arquivo.py
+Criar um commit (salvar a mudança):
+sh
+Copiar
+Editar
+git commit -m "Adicionando meu_arquivo.py na branch dev"
+📌 Como Enviar um Arquivo de dev para qas e prd?
+Isso será explicado na próxima etapa, onde aprenderemos a mover as mudanças entre os ambientes.
+
+Agora que você sabe onde criar os arquivos, podemos seguir para a próxima etapa? Se sim, me responda com "completamente". 🚀
+
