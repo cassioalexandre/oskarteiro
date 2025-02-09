@@ -1,8 +1,8 @@
 env/
 __pycache__/
 *.log
-*.sqlite3 # Se usar SQLite
-.DS_Store # Para evitar arquivos do macOS
+*.sqlite3
+.DS_Store 
 env-dev/
 env-qas/
 env-prd/
